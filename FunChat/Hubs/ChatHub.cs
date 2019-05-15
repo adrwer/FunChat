@@ -15,7 +15,8 @@ namespace FunChat.Hubs
 
         public void SendMessage(string room, string message, int x, int y)
         {
-            Clients.Group(room).onNewMessage(message, x, y);
+            var username = Context.User.Identity.Name;
+            Clients.Group(room).onNewMessage(username, message, x, y);
         }
     }
 }
