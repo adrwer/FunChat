@@ -10,7 +10,7 @@ namespace FunChat.Hubs
     {
         public void SendMessage(string message, int x, int y)
         {
-            Clients.All.hello();
+            Clients.All.onNewMessage(message, x, y);
         }
     }
 }
