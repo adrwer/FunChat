@@ -24,12 +24,23 @@
             .focus();
         })
 
-        funChatForm.submit(function () {
+        funChatForm.submit(function (e) {
+            e.preventDefault();
             var message = funChatInput.val();
             var position = funChatInput.offset();
             chatHub.server.sendMessage(message, position.left, position.top);
             funChatInput.val('').hide();
         })
+
+        chatHub.client.onNewMessage = function (message, left, top) {
+            var newMessage = $("<span>")
+                .addClass("fun-chat-message")
+                .text(message)
+                .css({ position: "absolute" })
+                .offset({ left: left, top: top });
+            funChat.append(newMessage);
+        }
+
         $.connection.hub.start().done(function () {
 
         })
