@@ -17,6 +17,7 @@
         var funChat = $("#fun-chat-body");
         var funChatForm = $("#fun-chat-form");
         var funChatInput = $("#fun-chat-input");
+        var chatRoom = '@ViewBag.Chatroom';
 
         funChat.click(function (event) {
             funChatInput.show()
@@ -28,7 +29,7 @@
             e.preventDefault();
             var message = funChatInput.val();
             var position = funChatInput.offset();
-            chatHub.server.sendMessage(message, position.left, position.top);
+            chatHub.server.sendMessage(chatRoom, message, position.left, position.top);
             funChatInput.val('').hide();
         })
 
@@ -42,7 +43,7 @@
         }
 
         $.connection.hub.start().done(function () {
-
+            chatHub.server.joinRoom(chatRoom);
         })
     </script>
     }

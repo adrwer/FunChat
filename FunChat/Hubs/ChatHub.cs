@@ -8,9 +8,14 @@ namespace FunChat.Hubs
 {
     public class ChatHub : Hub
     {
-        public void SendMessage(string message, int x, int y)
+        public void JoinRoom(string room)
         {
-            Clients.All.onNewMessage(message, x, y);
+            Groups.Add(Context.ConnectionId, room);
+        }
+
+        public void SendMessage(string room, string message, int x, int y)
+        {
+            Clients.Group(room).onNewMessage(message, x, y);
         }
     }
 }
