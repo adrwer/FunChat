@@ -33,10 +33,10 @@
             funChatInput.val('').hide();
         })
 
-        chatHub.client.onNewMessage = function (message, left, top) {
+        chatHub.client.onNewMessage = function (username, message, left, top) {
             var newMessage = $("<span>")
                 .addClass("fun-chat-message")
-                .text(message)
+                .text((username || 'Anonymous') + ': ' + message)
                 .css({ position: "absolute" })
                 .offset({ left: left, top: top });
             funChat.append(newMessage);
