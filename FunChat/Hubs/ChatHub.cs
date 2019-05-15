@@ -8,7 +8,7 @@ namespace FunChat.Hubs
 {
     public class ChatHub : Hub
     {
-        public void Hello()
+        public void SendMessage(string message, int x, int y)
         {
             Clients.All.hello();
         }
